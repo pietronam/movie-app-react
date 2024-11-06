@@ -1,16 +1,19 @@
 import { getMovies } from './api/movies';
 import { MovieType } from './types/movieTypes';
 import { MovieCard } from './components/MovieCard'
+import { useEffect, useState } from 'react';
 
 function App() {
-  { }
+  const [movies, setMovies] = useState<MovieType[]>([]);
 
-  let movies: MovieType[] = [];
-  const movieMock = async () => {
-    movies = await getMovies("trending/all/day");
-  }
 
-  movieMock();
+  useEffect(() => {
+    const fetchMovie = async () => {
+      setMovies(await getMovies("trending/all/day"));
+    }
+    fetchMovie();
+  }, []);
+
   return (
     <div>
       <h1>Questo è il componente React the rappresenta l'intera applicazione</h1>
@@ -21,7 +24,7 @@ function App() {
             return <MovieCard key={movie.id} movie={movie} />
           })
       }
-   </div>
+    </div>
   )
 }
 
