@@ -2,7 +2,11 @@ import { useState } from "react";
 import { MovieType } from "../types/movieTypes";
 
 type MovieCardProps = {
-    movie: MovieType,
+    movie: {
+        id: number,
+        title: string,
+        overview: string,
+    }
 }
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
@@ -23,7 +27,7 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
         <div style={{ backgroundColor: 'red' }} onClick={handleClickCount}>
             <h1 onClick={() => handleClick(movie.title)}>{movie.title}</h1>
             <p onClick={() => handleClick(movie.id)}>{movie.id}</p>
-            <p onClick={() => handleClick(movie.description)}>{movie.description}</p>
+            <p onClick={() => handleClick(movie.overview)}>{movie.overview}</p>
             <p>Numero di click: {clickCount}</p>
         </div>
     )
