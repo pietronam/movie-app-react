@@ -1,24 +1,30 @@
-/**
- * MovieCard è un componente che deve ricevere due dati:
- * -idMovie: un numero
- * -titleMovie: una stringa
- * 
- * Le funzioni che rappresentano i componenti React in Typescript ricevono un solo parametro "props" che è un oggetto che contiene tutte le proprietà passate al componente.
- * @param props 
- * @returns 
- */
-
+import { useState } from "react";
+import { MovieType } from "../types/movieTypes";
 
 type MovieCardProps = {
-    idMovie: number;
-    titleMovie: string;
+    movie: MovieType,
 }
 
-export const MovieCard = (props: MovieCardProps) => {
+export const MovieCard = ({ movie }: MovieCardProps) => {
+    //useState() ritorna [variabile, funzione per cambiare la variabile]    
+    const [clickCount, setClickCount] = useState(0);
+
+    const handleClickCount = () => {
+        setClickCount(clickCount + 1); //setClickCount() è asincrona
+        console.log(clickCount);
+    }
+
+
+    const handleClick = (message: string | number) => {
+        console.log(`Cliccato ${message}`);
+    }
+
     return (
-        <div style={{ backgroundColor: 'red' }}>
-            <h1>{props.titleMovie}</h1>
-            <p>{props.idMovie}</p>
+        <div style={{ backgroundColor: 'red' }} onClick={handleClickCount}>
+            <h1 onClick={() => handleClick(movie.title)}>{movie.title}</h1>
+            <p onClick={() => handleClick(movie.id)}>{movie.id}</p>
+            <p onClick={() => handleClick(movie.description)}>{movie.description}</p>
+            <p>Numero di click: {clickCount}</p>
         </div>
     )
 }

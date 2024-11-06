@@ -7,16 +7,19 @@ function App() {
     {
       id: 1,
       title: "Il Signore degli Anelli",
+      description: "hm"
     },
     {
       id: 2,
       title: "Harry Potter",
+      description: "a"
     },
     {
       id: 3,
       title: "Il Padrino",
+      description: "il",
     },
-  ]
+  ];
 
   return (
     <div>
@@ -25,10 +28,9 @@ function App() {
       {
         movieMock.map(
           (movie) => {
-            return <MovieCard idMovie={movie.id} titleMovie={movie.title} />
+            return <MovieCard movie = {movie} />
           })
       }
-
     </div>
   )
 }
