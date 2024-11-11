@@ -1,8 +1,8 @@
-import { MovieType } from "./movieTypes"
+import { MovieType, PersonType, TvType } from "./contentTypes"
 
 export type ResponseTrendingType = {
     page: number,
-    results: MovieType[],
+    results: MovieType[] | PersonType[] | TvType[],
     total_pages: number,
     total_results: number,
 }

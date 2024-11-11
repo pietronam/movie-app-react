@@ -6,4 +6,8 @@ export const OPTIONS = {
         Authorization:
         `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0M2RkZmNhMjlkNzNhNmEzYTRiYjRkNWYwYzc3MGZiZiIsInN1YiI6IjY1ZTg2YzdlZWE0MjYzMDE3YjIyOGRmNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SbRmoUz6V4AsxTymqbiS-uORy-HBk8uRXoHXZDA3v3o`
     },
-}; 
+};
+export const ALL_URL = "trending/all/day";
+export const MOVIE_URL = "trending/movie/day";
+export const TV_URL = "trending/tv/day";
+export const PEOPLE_URL = "trending/person/day";
