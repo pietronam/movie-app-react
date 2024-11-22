@@ -1,6 +1,7 @@
 import { ALL_URL, MOVIE_URL, PEOPLE_URL, TV_URL } from './api/config';
 import { ContentHolder } from './components/ContentHolder';
 
+
 function App() {
   return (
     <div style={{width: "100vw"}}>

@@ -1,4 +1,4 @@
-import "./cards.css";
+import "../cards.css";
 
 type ContentCardProps = {
     content: {
