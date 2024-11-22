@@ -22,7 +22,7 @@ export const ContentHolder = ({ url, pName }: ContentHolderProps) => {
     return (
         <>
             <h2>{pName}</h2>
-            <SimpleGrid columns={3} gap={40}>
+            <SimpleGrid columns={4} gap={4}>
                     {
                         content.map(
                             (content) => {

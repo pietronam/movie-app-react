@@ -1,19 +1,30 @@
-import "../cards.css";
+import { Card, Image, Text } from "@chakra-ui/react";
 
 type ContentCardProps = {
     content: {
         id: number,
-    } & ({ name: string; title?: never } | { title: string; name?: never });
+        overview?: string,
+    } & ({ name: string; title?: never } | { title: string; name?: never })
+    & ({ backdrop_path: string; profile_path?: never } | { profile_path: string; backdrop_path?: never });
 
     pClassName: string,
 }
 
-export const ContentCard = ({ content, pClassName }: ContentCardProps) => {
+export const ContentCard = ({ content }: ContentCardProps) => {
+    const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+
     return (
-        <div className={pClassName}>
-            <h3>{content.name || content.title}</h3>
-            <p>{content.id}</p>
-        </div>
+        <Card.Root
+            width="300px"
+            rounded="2xl"
+            borderColor="#333333"
+            backgroundColor="#333333">
+            <Image
+                src={`${IMAGE_BASE_URL}/w300${content.backdrop_path || content.profile_path}`}
+                alt={content.name || content.title}
+                roundedTop="2xl" />
+            <Card.Title color="#ffffe6" margin="1" marginLeft="1.5">{content.name || content.title}</Card.Title>
+        </Card.Root>
     )
 }
 
