@@ -8,7 +8,6 @@ export const getTrendingContent = async (trendingUrl: string) => {
         const data: ResponseTrendingType = await response.json();
 
         const contentArray: ContentType[] = data.results;
-        console.log(contentArray);
         return contentArray;
     } catch (error) {
         console.error(error);

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { ContentType } from "../types/contentTypes";
 import { getTrendingContent } from "../api/content";
 import { ContentCard } from "./ContentCard";
-import { SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid } from "@chakra-ui/react";
+
 
 type ContentHolderProps = {
     pName: string,
@@ -20,23 +21,26 @@ export const ContentHolder = ({ url, pName }: ContentHolderProps) => {
     }, []);
 
     return (
-        <>
-            <h2>{pName}</h2>
-            <SimpleGrid columns={4} gap={4}>
-                    {
-                        content.map(
-                            (content) => {
-                                switch (content.media_type) {
-                                    case "movie":
-                                        return <ContentCard pClassName={"movie-card"} key={content.id} content={content} />
-                                    case "tv":
-                                        return <ContentCard pClassName={"tv-card"} key={content.id} content={content} />
-                                    case "person":
-                                        return <ContentCard pClassName={"person-card"} key={content.id} content={content} />
-                                }
-                            })
-                    }
+        <Box
+            w="100vw"
+        >
+            <Text 
+            textStyle="2xl"
+            paddingX="20"
+            >{pName}</Text>
+            <SimpleGrid
+                w="100%"
+                paddingX={{sm:"", lg:"20"}}
+                columns={[1, 2, 2, 3, 4]}
+                gap={[1, 1, 2, 3, 4]}
+            >
+                {
+                    content.map(
+                        (content) => {
+                            return <ContentCard key={content.id} content={content} />
+                        })
+                }
             </SimpleGrid>
-        </>
+        </Box>
     )
 }
