@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
-import { ContentType, MovieType } from "../types/contentTypes";
-import { getTrendingContent } from "../api/content";
+import { CardContentType } from "../types/contentTypes";
 import { ContentCard } from "./ContentCard";
 import { Box, Text, SimpleGrid } from "@chakra-ui/react";
 
 
 type ContentHolderProps = {
     pName: string,
-    url: string,
-    cardFunction: (content: MovieType) => void,
+    fetch: () => Promise<CardContentType[]>,
+    cardFunction: (cardContent: CardContentType) => void,
 }
 
-export const ContentHolder = ({ url, pName, cardFunction }: ContentHolderProps) => {
-    const [content, setContent] = useState<ContentType[]>([]);
+export const ContentHolder = ({ pName, fetch, cardFunction }: ContentHolderProps) => {
+    const [cardContent, setCardContent] = useState<CardContentType[]>([]);
 
     useEffect(() => {
         const fetchContent = async () => {
-            setContent(await getTrendingContent(url));
+            fetch().then((result) => setCardContent(result));
         }
         fetchContent();
     }, []);
@@ -30,9 +29,9 @@ export const ContentHolder = ({ url, pName, cardFunction }: ContentHolderProps) 
                 gap={[1, 1, 2, 3, 4]}
             >
                 {
-                    content.map(
-                        (content) => {
-                            return <ContentCard key={content.id} content={content as MovieType} cardFunction={cardFunction}/>
+                    cardContent.map(
+                        (cardContent) => {
+                            return <ContentCard key={cardContent.id} cardContent={cardContent} cardFunction={cardFunction}/>
                         })
                 }
             </SimpleGrid>

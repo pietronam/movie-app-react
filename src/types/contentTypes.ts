@@ -1,6 +1,5 @@
 type BaseType = {
     id: number,
-    media_type: string,
     adult: boolean,
     popularity: number,
 }
@@ -18,6 +17,7 @@ type MediaType = BaseType & {
 export type MovieType = MediaType & {
     title: string,
     original_title: string,
+    media_type: "movie",
     release_date: string,
     video: boolean,
 };
@@ -25,6 +25,7 @@ export type MovieType = MediaType & {
 export type TvType = MediaType & {
     name: string,
     original_name: string,
+    media_type: "tv",
     first_air_date: string,
     origin_country: string[],
 }
@@ -32,6 +33,7 @@ export type TvType = MediaType & {
 export type PersonType = BaseType & {
     name: string,
     original_name: string,
+    media_type: "person",
     gender: number,
     known_for_department: string,
     profile_path: string,
@@ -39,21 +41,17 @@ export type PersonType = BaseType & {
 
 export type ContentType = MovieType | TvType | PersonType; 
 
-/* export type ContentType = {
+export type CardContentType = {
     id: number,
-    name: string,
-    media_type: string,
+    name: string,               //name (tv and person) || title (movie)
+    media_type: "movie" | "person" | "tv",
     adult: boolean,
     popularity: number,
-    origin: string[],           //original_language(movie) || origin_country(tv)
     main_img: string,           //poster_path(media) || profile_path (person) 
+    background_img: string,    //backdrop_path (media) || profile_path (person)
 
-
-    background_img?: string,    //backdrop_path (media)
     description?: string,       //overview(media)
     vote_average?: number,      //media
     release_date?: string,      //release_date(movie) || first_air_date (tv)
     gender?: number,            //person
-
 }
- */

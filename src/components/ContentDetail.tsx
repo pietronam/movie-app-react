@@ -1,16 +1,16 @@
 import { DialogBody, DialogContent, DialogFooter, DialogHeader, DialogRoot } from "@/components/ui/dialog"
-import { MovieType } from "@/types/contentTypes"
+import { CardContentType } from "@/types/contentTypes"
 import { Text } from "@chakra-ui/react"
 
 type ContentDetailProps = {
     open: boolean,
     onClose: (isOpen: boolean) => void,
-    content: MovieType | undefined,
+    cardContent: CardContentType | undefined,
 }
 
-export const ContentDetail = ({ open, onClose, content }: ContentDetailProps) => {
-    
-    if(!content){
+export const ContentDetail = ({ open, onClose, cardContent }: ContentDetailProps) => {
+
+    if(!cardContent){
         return <Text>No content selected</Text>
     }
 
@@ -22,10 +22,10 @@ export const ContentDetail = ({ open, onClose, content }: ContentDetailProps) =>
         >
             <DialogContent>
                 <DialogHeader textStyle="5xl">
-                    {content.title}
+                    {cardContent.name}
                 </DialogHeader>
-                <DialogBody><Text textStyle="2xl">{content.overview}</Text></DialogBody>
-                <DialogFooter>{content.release_date}</DialogFooter>
+                <DialogBody><Text textStyle="2xl">{cardContent.description}</Text></DialogBody>
+                <DialogFooter>{cardContent.release_date}</DialogFooter>
             </DialogContent>
         </DialogRoot>
     )

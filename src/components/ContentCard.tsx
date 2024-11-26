@@ -1,22 +1,17 @@
-import { MovieType } from "@/types/contentTypes";
+import { CardContentType } from "@/types/contentTypes";
 import { Card, Image } from "@chakra-ui/react";
 
 type ContentCardProps = {
-    content: MovieType/* {
-        id: number,
-        overview?: string,
-    } & ({ name: string; title?: never } | { title: string; name?: never })
-    & ({ backdrop_path: string; profile_path?: never } | { profile_path: string; backdrop_path?: never }); */
-
-    cardFunction: (content: MovieType) => (void),
+    cardContent: CardContentType,
+    cardFunction: (card: CardContentType) => (void),
 }
 
-export const ContentCard = ({ content, cardFunction }: ContentCardProps) => {
+export const ContentCard = ({ cardContent, cardFunction }: ContentCardProps) => {
     const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
     return (
         <Card.Root
-            onClick={() => cardFunction(content)}
+            onClick={() => cardFunction(cardContent)}
             width="80"
             margin="auto"
             rounded="2xl"
@@ -24,10 +19,10 @@ export const ContentCard = ({ content, cardFunction }: ContentCardProps) => {
             backgroundColor="gray.700"
         >
             <Image
-                src={`${IMAGE_BASE_URL}/w300${content.backdrop_path /* || content.profile_path */}`}
-                alt={/* content.name || */ content.title}
+                src={`${IMAGE_BASE_URL}/w300${cardContent.background_img}`}
+                alt={ cardContent.name}
                 roundedTop="2xl" />
-            <Card.Title color="gray.200" margin="1" marginLeft="1.5">{/* content.name || */ content.title}</Card.Title>
+            <Card.Title color="gray.200" margin="1" marginLeft="1.5">{ cardContent.name}</Card.Title>
         </Card.Root >
     )
 }
