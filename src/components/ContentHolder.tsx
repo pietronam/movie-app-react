@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ContentType } from "../types/contentTypes";
+import { ContentType, MovieType } from "../types/contentTypes";
 import { getTrendingContent } from "../api/content";
 import { ContentCard } from "./ContentCard";
 import { Box, Text, SimpleGrid } from "@chakra-ui/react";
@@ -8,9 +8,10 @@ import { Box, Text, SimpleGrid } from "@chakra-ui/react";
 type ContentHolderProps = {
     pName: string,
     url: string,
+    cardFunction: (content: MovieType) => void,
 }
 
-export const ContentHolder = ({ url, pName }: ContentHolderProps) => {
+export const ContentHolder = ({ url, pName, cardFunction }: ContentHolderProps) => {
     const [content, setContent] = useState<ContentType[]>([]);
 
     useEffect(() => {
@@ -21,23 +22,17 @@ export const ContentHolder = ({ url, pName }: ContentHolderProps) => {
     }, []);
 
     return (
-        <Box
-            w="100vw"
-        >
-            <Text 
-            textStyle="2xl"
-            paddingX="20"
-            >{pName}</Text>
+        <Box>
+            <Text textStyle="2xl">{pName}</Text>
             <SimpleGrid
-                w="100%"
-                paddingX={{sm:"", lg:"20"}}
+
                 columns={[1, 2, 2, 3, 4]}
                 gap={[1, 1, 2, 3, 4]}
             >
                 {
                     content.map(
                         (content) => {
-                            return <ContentCard key={content.id} content={content} />
+                            return <ContentCard key={content.id} content={content as MovieType} cardFunction={cardFunction}/>
                         })
                 }
             </SimpleGrid>

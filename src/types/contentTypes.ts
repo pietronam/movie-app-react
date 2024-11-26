@@ -38,3 +38,22 @@ export type PersonType = BaseType & {
 }
 
 export type ContentType = MovieType | TvType | PersonType; 
+
+/* export type ContentType = {
+    id: number,
+    name: string,
+    media_type: string,
+    adult: boolean,
+    popularity: number,
+    origin: string[],           //original_language(movie) || origin_country(tv)
+    main_img: string,           //poster_path(media) || profile_path (person) 
+
+
+    background_img?: string,    //backdrop_path (media)
+    description?: string,       //overview(media)
+    vote_average?: number,      //media
+    release_date?: string,      //release_date(movie) || first_air_date (tv)
+    gender?: number,            //person
+
+}
+ */
