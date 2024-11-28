@@ -55,3 +55,4 @@ export type CardContentType = {
     release_date?: string,      //release_date(movie) || first_air_date (tv)
     gender?: number,            //person
 }
+

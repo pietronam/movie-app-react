@@ -1,6 +1,6 @@
-import { ContentDetail } from './components/ContentDetail';
+import { DetailDialog } from './components/DetailDialog';
 import { ContentHolder } from './components/ContentHolder';
-import { useDisclosure, VStack } from '@chakra-ui/react';
+import { Text, useDisclosure, VStack } from '@chakra-ui/react';
 import { CardContentType } from './types/contentTypes';
 import { useState } from 'react';
 import { getMovieCards, getPeopleCards, getTvCards } from './api/content';
@@ -16,8 +16,8 @@ function App() {
 
   return (
     <VStack>
-      <h1>MOVIEAPP-REACT</h1>
-      <ContentDetail open={open} onClose={onClose} cardContent={activeContent}></ContentDetail>
+      <Text w="4xl">MOVIEAPP-REACT</Text>
+      <DetailDialog open={open} onClose={onClose} cardContent={activeContent}></DetailDialog>
 
       <ContentHolder fetch={() => getMovieCards()} pName={"Movies"} cardFunction={handleActiveContent} />
       <ContentHolder fetch={() => getTvCards()} pName={"TV Series"} cardFunction={handleActiveContent} />
