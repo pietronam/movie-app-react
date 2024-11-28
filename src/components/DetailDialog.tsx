@@ -1,6 +1,6 @@
-import { getMovieDetail, getTvDetail, getPersonDetail } from "@/api/contentDetail"
+import { getContentDetail } from "@/api/contentDetail"
 import { DialogBody, DialogContent, DialogFooter, DialogRoot } from "@/components/ui/dialog"
-import { ContentDisplayType } from "@/types/contentDisplayTypes"
+import { ContentDisplayType } from "@/types/contentDetailTypes"
 import { CardContentType } from "@/types/contentTypes"
 import { Box, Text, Image } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
@@ -27,17 +27,7 @@ export const DetailDialog = ({ open, onClose, cardContent }: DetailDialogProps) 
 
             try {
                 let detail: ContentDisplayType;
-                switch (cardContent.media_type) {
-                    case "movie":
-                        detail = await getMovieDetail(cardContent.id);
-                        break;
-                    case "tv":
-                        detail = await getTvDetail(cardContent.id);
-                        break;
-                    case "person":
-                        detail = await getPersonDetail(cardContent.id);
-                        break;
-                }
+                detail = await getContentDetail(cardContent.media_type, cardContent.id);
                 setContentDetail(detail);
             } catch (error) {
                 console.error(error);
@@ -70,7 +60,7 @@ export const DetailDialog = ({ open, onClose, cardContent }: DetailDialogProps) 
                                     <Text textStyle="md">{contentDetail.description}</Text>
                                 </Box>
                                 <Box w="1/3">
-                                    <Image src={`${IMAGE_BASE_URL}/w500/${contentDetail.img}`} maxHeight={"100%"}/>
+                                    <Image src={`${IMAGE_BASE_URL}/w500/${contentDetail.img}`} maxHeight={"100%"} />
                                 </Box>
                             </DialogBody>
                         </>

@@ -129,3 +129,9 @@ export type PersonDetailType = BaseDetailType & {
     profile_path: string,
 }
 
+export type ContentDisplayType = {
+    id: number,
+    name: string,
+    img: string,
+    description: string,
+}

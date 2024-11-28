@@ -3,7 +3,7 @@ import { ContentHolder } from './components/ContentHolder';
 import { Text, useDisclosure, VStack } from '@chakra-ui/react';
 import { CardContentType } from './types/contentTypes';
 import { useState } from 'react';
-import { getMovieCards, getPeopleCards, getTvCards } from './api/content';
+import { MOVIE_URI, PEOPLE_URI, TV_URI } from './api/config';
 
 function App() {
   const { open, onOpen, onClose } = useDisclosure();
@@ -16,12 +16,12 @@ function App() {
 
   return (
     <VStack>
-      <Text w="4xl">MOVIEAPP-REACT</Text>
+      <Text w="8xl">MOVIEAPP-REACT</Text>
       <DetailDialog open={open} onClose={onClose} cardContent={activeContent}></DetailDialog>
 
-      <ContentHolder fetch={() => getMovieCards()} pName={"Movies"} cardFunction={handleActiveContent} />
-      <ContentHolder fetch={() => getTvCards()} pName={"TV Series"} cardFunction={handleActiveContent} />
-      <ContentHolder fetch={() => getPeopleCards()} pName={"Actors"} cardFunction={handleActiveContent} />
+      <ContentHolder URI={MOVIE_URI} pName={"Movies"} cardFunction={handleActiveContent} />
+      <ContentHolder URI={TV_URI} pName={"TV Series"} cardFunction={handleActiveContent} />
+      <ContentHolder URI={PEOPLE_URI} pName={"Actors"} cardFunction={handleActiveContent} />
 
     </VStack>
   )

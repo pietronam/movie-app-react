@@ -39,7 +39,7 @@ export type PersonType = BaseType & {
     profile_path: string,
 }
 
-export type ContentType = MovieType | TvType | PersonType; 
+export type ContentType = MovieType | TvType | PersonType;
 
 export type CardContentType = {
     id: number,
@@ -55,4 +55,3 @@ export type CardContentType = {
     release_date?: string,      //release_date(movie) || first_air_date (tv)
     gender?: number,            //person
 }
-

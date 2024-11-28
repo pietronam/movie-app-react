@@ -1,88 +1,66 @@
 import { ContentType, MovieType, PersonType, TvType, CardContentType } from "../types/contentTypes";
 import { ResponseTrendingType } from "../types/responseTypes";
-import { BASE_URL, MOVIE_URL, OPTIONS, PEOPLE_URL, TV_URL } from "./config";
+import { BASE_URI, OPTIONS } from "./config";
 
 export const getTrendingContent = async (trendingUrl: string) => {
     try {
-        const response = await fetch(BASE_URL + `${trendingUrl}`, OPTIONS);
+        const response = await fetch(BASE_URI + `${trendingUrl}`, OPTIONS);
         const data: ResponseTrendingType = await response.json();
         const dataArray: ContentType[] = data.results;
 
-        return dataArray;
+        const cardsArray: CardContentType[] = dataArray.map((element) => {
+            switch (element.media_type){
+                case "movie":
+                    const movie = element as MovieType;
+                    return {
+                        id: movie.id,
+                        name: movie.title,
+                        media_type: "movie",
+                        adult: movie.adult,
+                        popularity: movie.popularity,
+                        main_img: movie.poster_path,
+            
+                        background_img: movie.backdrop_path,
+                        description: movie.overview,
+                        vote_average: movie.vote_average,
+                        release_date: movie.release_date,
+                    }
+                case "tv":
+                    const tv = element as TvType;
+
+                    return {
+                        id: tv.id,
+                        name: tv.name,
+                        media_type: "tv",
+                        adult: tv.adult,
+                        popularity: tv.popularity,
+                        main_img: tv.poster_path,
+                        background_img: tv.backdrop_path,
+            
+                        description: tv.overview,
+                        vote_average: tv.vote_average,
+                        release_date: tv.first_air_date,
+                    }
+                case "person":
+                    const person = element as PersonType;
+            
+                    return {
+                        id: person.id,
+                        name: person.name,
+                        media_type: "person",
+                        adult: person.adult,
+                        popularity: person.popularity,
+                        main_img: person.profile_path,
+                        background_img: person.profile_path,
+                        gender: person.gender,
+                    }
+                }
+            }
+        )
+        return cardsArray;
 
     } catch (error) {
         console.error(error);
         return [];
     }
-}
-
-export const getMovieCards = async () => {
-    // Chiamata fetch che restituisce un array di oggetti generici.
-    const content: ContentType[] = await getTrendingContent(MOVIE_URL);
-
-    // Dovendo estrarre gli attributi di un Movie procedo a fare il cast
-    // esplicito in MovieTypes[] senza ulteriori test.
-    const movies = content as MovieType[]
-
-    // Devo ciclare l'array movieCast e creare un array di tipo CardContentType da restituire
-
-    const cardsArray: CardContentType[] = movies.map(element => {
-        return {
-            id: element.id,
-            name: element.title,
-            media_type: "movie",
-            adult: element.adult,
-            popularity: element.popularity,
-            main_img: element.poster_path,
-
-            background_img: element.backdrop_path,
-            description: element.overview,
-            vote_average: element.vote_average,
-            release_date: element.release_date,
-        }
-    })
-    return cardsArray;
-}
-
-export const getTvCards = async () => {
-    const content: ContentType[] = await getTrendingContent(TV_URL);
-    const tv = content as TvType[]
-
-    const cardsArray: CardContentType[] = tv.map(element => {
-            return {
-            id: element.id,
-            name: element.name,
-            media_type: "tv",
-            adult: element.adult,
-            popularity: element.popularity,
-            main_img: element.poster_path,
-            background_img: element.backdrop_path,
-            
-            description: element.overview,
-            vote_average: element.vote_average,
-            release_date: element.first_air_date,
-        }
-    })
-    return cardsArray;
-}
-
-export const getPeopleCards = async () => {
-    const content: ContentType[] = await getTrendingContent(PEOPLE_URL);
-    const people = content as PersonType[]
-
-    const cardsArray: CardContentType[] = people.map(element => {
-        return {
-            id: element.id,
-            name: element.name,
-            media_type: "person",
-            adult: element.adult,
-            popularity: element.popularity,
-            main_img: element.profile_path,
-            background_img: element.profile_path,
-
-            gender: element.gender,
-        
-        }
-    })
-    return cardsArray;
 }
