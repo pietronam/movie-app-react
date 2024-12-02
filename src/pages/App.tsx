@@ -1,9 +1,9 @@
-import { DetailDialog } from './components/DetailDialog';
-import { ContentHolder } from './components/ContentHolder';
+import { DetailDialog } from '../components/DetailDialog';
+import { ContentHolder } from '../components/ContentHolder';
 import { Text, useDisclosure, VStack } from '@chakra-ui/react';
-import { CardContentType } from './types/contentTypes';
+import { CardContentType } from '../types/contentTypes';
 import { useState } from 'react';
-import { MOVIE_URI, PEOPLE_URI, TV_URI } from './api/config';
+import { MOVIE_URI, PEOPLE_URI, TV_URI } from '../api/config';
 
 function App() {
   const { open, onOpen, onClose } = useDisclosure();
