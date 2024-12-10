@@ -1,17 +1,15 @@
+import { getTrendingContent } from "@/api/content";
+import { Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { CardContentType } from "../types/contentTypes";
 import { ContentCard } from "./ContentCard";
-import { Box, Text, SimpleGrid } from "@chakra-ui/react";
-import { getTrendingContent } from "@/api/content";
-
 
 type ContentHolderProps = {
     pName: string,
     URI: string,
-    cardFunction: (cardContent: CardContentType) => void,
 }
 
-export const ContentHolder = ({ pName, URI, cardFunction }: ContentHolderProps) => {
+export const ContentHolder = ({ pName, URI }: ContentHolderProps) => {
     const [cardContent, setCardContent] = useState<CardContentType[]>([]);
 
     useEffect(() => {
@@ -22,20 +20,27 @@ export const ContentHolder = ({ pName, URI, cardFunction }: ContentHolderProps) 
     }, []);
 
     return (
-        <Box>
-            <Text textStyle="2xl">{pName}</Text>
-            <SimpleGrid
-
-                columns={[1, 2, 2, 3, 4]}
-                gap={[1, 1, 2, 3, 4]}
+        <Flex
+            w={"100vw"}
+            direction={"column"}
+            gap={5}
+            padding={10}
+        >
+            <Text
+                fontWeight="bold" textStyle="3xl" bgColor="#1B1833" color="#ed7812"
+            >{pName}</Text>
+            <Flex
+                display={"flex"}
+                gap={2}
+                overflowX={"auto"}
             >
                 {
                     cardContent.map(
                         (cardContent) => {
-                            return <ContentCard key={cardContent.id} cardContent={cardContent} cardFunction={cardFunction} />
+                            return <ContentCard key={cardContent.id} cardContent={cardContent} />
                         })
                 }
-            </SimpleGrid>
-        </Box>
+            </Flex>
+        </Flex>
     )
 }

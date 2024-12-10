@@ -1,8 +1,8 @@
-export type BaseDetailType = {
+type BaseDetailType = {
     id: number,
     adult: boolean
     popularity: number,
-    homepage?: string
+    homepage: string
 }
 
 type MediaDetailType = BaseDetailType & {
@@ -120,7 +120,7 @@ export type PersonDetailType = BaseDetailType & {
     also_known_as: string[],
     biography: string,
     birthday: string,
-    deathday: string | null,
+    deathday: string | undefined,
     gender: number,
     imdb_id?: string,
     known_for_department: string,
@@ -134,4 +134,35 @@ export type ContentDisplayType = {
     name: string,
     img: string,
     description: string,
+    release_or_birthday: string,
+    deathday?: string     //person only
+    website: string,
+    origin_country: string | string[];
+    languages?: string[]      //media only (spoken_languages)
+    production_companies?: [    //media only
+        {
+            id: number,
+            logo_path: string,
+            name: string,
+            origin_country: string,
+        }
+    ],       
+    vote_average?: number,    //media only
+    vote_count?: number,      //media only
+    status?: string,      //media only
+    runtime?: number,     //movie only
+    tagline?: string,     //movie only
+    seasons?: [          //tv only
+        {
+            air_date: string,
+            episode_count: number,
+            id: number,
+            name: string,
+            overview: string,
+            poster_path: string,
+            season_number: number,
+            vote_average: number,
+        }
+    ],
+    known_for_department?: string,    //person only
 }

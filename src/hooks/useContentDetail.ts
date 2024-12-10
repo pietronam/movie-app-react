@@ -1,9 +1,8 @@
 import { getContentDetail } from "@/api/contentDetail";
 import { ContentDisplayType } from "@/types/contentDetailTypes";
-import { CardContentType } from "@/types/contentTypes";
 import { useEffect, useState } from "react";
 
-export const useContentDetail = (cardContent: CardContentType) => {
+export const useContentDetail = (content_type: string, content_id: number,) => {
     const [contentDetail, setContentDetail] = useState<ContentDisplayType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<any>(null);
@@ -15,7 +14,7 @@ export const useContentDetail = (cardContent: CardContentType) => {
 
             try {
                 let detail: ContentDisplayType;
-                detail = await getContentDetail(cardContent.media_type, cardContent.id);
+                detail = await getContentDetail(content_type, content_id);
                 setContentDetail(detail);
             } catch (e) {
                 console.error(e);
@@ -25,7 +24,7 @@ export const useContentDetail = (cardContent: CardContentType) => {
             }
         }
         loadContentDetail();
-    }, [cardContent])
+    }, [])
 
     return { contentDetail, loading, error }
 }
