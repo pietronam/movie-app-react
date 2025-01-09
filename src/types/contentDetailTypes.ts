@@ -131,38 +131,21 @@ export type PersonDetailType = BaseDetailType & {
 
 export type ContentDisplayType = {
     id: number,
+    media_type: string;
     name: string,
     img: string,
     description: string,
     release_or_birthday: string,
-    deathday?: string     //person only
+    deathday?: string,     //person only
     website: string,
     origin_country: string | string[];
     languages?: string[]      //media only (spoken_languages)
-    production_companies?: [    //media only
-        {
-            id: number,
-            logo_path: string,
-            name: string,
-            origin_country: string,
-        }
-    ],       
+    production_companies?: string[],  //media only       
     vote_average?: number,    //media only
     vote_count?: number,      //media only
     status?: string,      //media only
     runtime?: number,     //movie only
     tagline?: string,     //movie only
-    seasons?: [          //tv only
-        {
-            air_date: string,
-            episode_count: number,
-            id: number,
-            name: string,
-            overview: string,
-            poster_path: string,
-            season_number: number,
-            vote_average: number,
-        }
-    ],
+    seasons?: string[],          //tv only
     known_for_department?: string,    //person only
 }

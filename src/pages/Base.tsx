@@ -1,12 +1,12 @@
-import { Text, Box, Flex, Icon, Link as ChakraLink } from "@chakra-ui/react";
+import { Text, Box, Flex, Icon, Link as ChakraLink, Heading } from "@chakra-ui/react";
 import { TiSocialFacebook, TiSocialInstagram, TiSocialLinkedin, TiSocialTwitter, TiSocialYoutube } from "react-icons/ti";
-import { Outlet, Link as RouterLink } from "react-router";
+import { Link, Outlet, Link as RouterLink } from "react-router";
 
 function Base() {
     return (
         <Box
             bgColor={"#1B1833"}
-            color={"#AB4459"}
+            color={"#b6495f"}
             minH={"100vh"}
         >
             <Flex
@@ -14,18 +14,19 @@ function Base() {
                 bgColor={"#121122"}
             >
                 <Flex
-                    w="1/5"
-                    h="20"
                     alignItems={"center"}
                     justifyContent={"center"}
                 >
-                    <Text
-                        color="#ed7812"
-                        fontWeight="bolder"
-                        fontFamily=""
-                        fontSize="4xl">
-                        MovieApp
-                    </Text>
+                    <Link to={""}>
+                        <Heading
+                            color="#ed7812"
+                            fontWeight="bolder"
+                            fontFamily=""
+                            fontSize="4xl"
+                            padding={10}>
+                            MovieApp
+                        </Heading>
+                    </Link>
                 </Flex>
                 <Flex
                     w="3/5"
@@ -43,14 +44,14 @@ function Base() {
                 ></Box>
             </Flex>
             <Outlet />
-            <Flex 
-            w="100vw" 
-            bgColor={"#121122"}
-            padding={10}
-            direction="column" 
-            alignItems={"center"} 
-            justifyContent={"center"} 
-            gap="9">
+            <Flex
+                w="100vw"
+                bgColor={"#121122"}
+                padding={10}
+                direction="column"
+                alignItems={"center"}
+                justifyContent={"center"}
+                gap="9">
                 <Flex gap={6}>
                     <ChakraLink href="https://youtu.be/dQw4w9WgXcQ">
                         <Icon color="#ed7812" w={9} h={9}>

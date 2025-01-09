@@ -12,15 +12,15 @@ export const getContentDetail = async (contentType: string, contentId: number): 
 
                 const DisplayData: ContentDisplayType = {
                     id: movieData.id,
+                    media_type: "movie",
                     name: movieData.title,
                     img: movieData.poster_path,
                     description: movieData.overview,
                     release_or_birthday: movieData.release_date,
                     website: movieData.homepage,
                     origin_country: movieData.origin_country,
-                    languages: movieData.spoken_languages.map(
-                        (element) => {return element.english_name;}),
-                    production_companies: movieData.production_companies,
+                    languages: movieData.spoken_languages.map((element) => { return element.english_name; }),
+                    production_companies: movieData.production_companies?.map(company => company.name),
                     vote_average: movieData.vote_average,
                     vote_count: movieData.vote_count,
                     status: movieData.status,
@@ -36,19 +36,19 @@ export const getContentDetail = async (contentType: string, contentId: number): 
 
                 const DisplayData: ContentDisplayType = {
                     id: tvData.id,
+                    media_type: "tv",
                     name: tvData.name,
                     img: tvData.poster_path,
                     description: tvData.overview,
                     release_or_birthday: tvData.first_air_date,
                     website: tvData.homepage,
                     origin_country: tvData.origin_country,
-                    languages: tvData.spoken_languages.map(
-                        (element) => {return element.english_name;}),
-                    production_companies: tvData.production_companies,
+                    languages: tvData.spoken_languages.map((element) => { return element.english_name; }),
+                    production_companies: tvData.production_companies?.map(company => company.name),
                     vote_average: tvData.vote_average,
                     vote_count: tvData.vote_count,
                     status: tvData.status,
-                    seasons: tvData.seasons,
+                    seasons: tvData.seasons?.map(season => season.name),
                 }
 
                 return DisplayData;
@@ -59,6 +59,7 @@ export const getContentDetail = async (contentType: string, contentId: number): 
 
                 const DisplayData: ContentDisplayType = {
                     id: personData.id,
+                    media_type: "person",
                     name: personData.name,
                     img: personData.profile_path,
                     description: personData.biography,
@@ -74,6 +75,7 @@ export const getContentDetail = async (contentType: string, contentId: number): 
             default:
                 return {
                     id: 0,
+                    media_type: "unknown",
                     name: "Unknown",
                     img: "",
                     description: "No content available.",
@@ -86,6 +88,7 @@ export const getContentDetail = async (contentType: string, contentId: number): 
         console.error(error);
         return {
             id: 0,
+            media_type: "unknown",
             name: "Unknown",
             img: "",
             description: "No content available.",

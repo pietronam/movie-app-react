@@ -1,9 +1,11 @@
+import { MovieDetail } from "@/components/MovieDetail";
+import { PersonDetail } from "@/components/PersonDetail";
+import { TvDetail } from "@/components/TvDetail";
 import { useContentDetail } from "@/hooks/useContentDetail";
-import { Box, Text, Image, Flex } from "@chakra-ui/react";
+import { Text, } from "@chakra-ui/react";
 import { useParams } from "react-router";
 
 function DetailLayout() {
-    const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
     const { content_type, content_id } = useParams();
 
@@ -19,19 +21,39 @@ function DetailLayout() {
 
     return (
         <>
-            {loading ? (<Text>Loading...</Text>) :
-                error ? (<Text>{error}</Text>) :
-                    contentDetail ? (
-                        <Flex>
-                            <Box w="2/3">
-                                <Text textStyle="5xl">{contentDetail.name}</Text>
-                                <Text textStyle="md">{contentDetail.description}</Text>
-                            </Box>
-                            <Box w="1/3">
-                                <Image src={`${IMAGE_BASE_URL}/w500/${contentDetail.img}`} maxHeight={"100%"} />
-                            </Box>
-                        </Flex>
-                    ) : (<Text>No content available.</Text>)
+            {/* {() => {
+                if (loading) {
+                    return <Text>Loading...</Text>
+                }
+                else if (error) {
+                    return <Text>{error}</Text>
+                }
+                else if (contentDetail) {
+                    switch (contentDetail.media_type) {
+                                    case "movie":
+                                        return <MovieDetail contentDetail={contentDetail} />
+
+                                    case "tv":
+                                        return <TvDetail contentDetail={contentDetail} />
+
+                                    case "person":
+                                        return <PersonDetail contentDetail={contentDetail} />
+                                }                }
+                else return (<Text>No content available.</Text>)
+            }} */}
+
+
+
+            {loading ?
+                <Text>Loading...</Text> :
+                error ? <Text>{error}</Text> :
+                    contentDetail ?
+                        (
+                            contentDetail.media_type === "movie" ? <MovieDetail contentDetail={contentDetail} />
+                                : contentDetail.media_type === "tv" ? <TvDetail contentDetail={contentDetail} />
+                                    : <PersonDetail contentDetail={contentDetail} />
+                        )
+                        : <Text>No content available.</Text >
             }
         </>
     )
