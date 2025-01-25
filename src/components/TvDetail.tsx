@@ -27,7 +27,7 @@ export const TvDetail = ({ contentDetail }: TvDetailProps) => {
                         <Box marginTop={"auto"}>
                             <Text><b>Seasons: </b>{contentDetail.seasons?.join(", ")}</Text>
                             <Text><b>Release date: </b>{contentDetail.release_or_birthday}</Text>
-                            <Text><b>Languages: </b>{contentDetail.languages?.join(", ")}</Text>
+                            <Text><b>Languages: </b>{contentDetail.languages?.join(",   ")}</Text>
                             <br />
                             <Text><b>Origin Country: </b>{contentDetail.origin_country}</Text>
                             <Text><b>Production Companies: </b>{contentDetail.production_companies?.join(", ")}</Text>

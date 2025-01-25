@@ -1,7 +1,6 @@
 import { getTrendingContent } from "@/api/content";
 import { Flex, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { CardContentType } from "../types/contentTypes";
+import { useQuery } from "@tanstack/react-query";
 import { ContentCard } from "./ContentCard";
 
 type ContentHolderProps = {
@@ -10,14 +9,15 @@ type ContentHolderProps = {
 }
 
 export const ContentHolder = ({ pName, URI }: ContentHolderProps) => {
-    const [cardContent, setCardContent] = useState<CardContentType[]>([]);
+    const { isPending, isError, data: cardContent, error } = useQuery({ queryKey: ['trending', URI], queryFn: () => getTrendingContent(URI)});
 
-    useEffect(() => {
-        getTrendingContent(URI)
-            .then(
-                (result) => setCardContent(result)
-            );
-    }, []);
+    if (isPending) {
+        return <span>Loading...</span>
+    }
+
+    if (isError) {
+        return <span>Error: {error.message}</span>
+    }
 
     return (
         <Flex

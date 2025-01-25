@@ -1,8 +1,9 @@
+import { getContentDetail } from "@/api/contentDetail";
 import { MovieDetail } from "@/components/MovieDetail";
 import { PersonDetail } from "@/components/PersonDetail";
 import { TvDetail } from "@/components/TvDetail";
-import { useContentDetail } from "@/hooks/useContentDetail";
 import { Text, } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 
 function DetailLayout() {
@@ -17,33 +18,14 @@ function DetailLayout() {
         throw console.error();
     }
 
-    const { contentDetail, loading, error } = useContentDetail(content_type, parseInt(content_id))
+    const { isPending: loading, isError: error, data: contentDetail } = useQuery({
+        queryKey: ['detail', content_type, content_id],
+        queryFn: () => getContentDetail(content_type, parseInt(content_id))
+    });
+
 
     return (
         <>
-            {/* {() => {
-                if (loading) {
-                    return <Text>Loading...</Text>
-                }
-                else if (error) {
-                    return <Text>{error}</Text>
-                }
-                else if (contentDetail) {
-                    switch (contentDetail.media_type) {
-                                    case "movie":
-                                        return <MovieDetail contentDetail={contentDetail} />
-
-                                    case "tv":
-                                        return <TvDetail contentDetail={contentDetail} />
-
-                                    case "person":
-                                        return <PersonDetail contentDetail={contentDetail} />
-                                }                }
-                else return (<Text>No content available.</Text>)
-            }} */}
-
-
-
             {loading ?
                 <Text>Loading...</Text> :
                 error ? <Text>{error}</Text> :

@@ -6,19 +6,24 @@ import DetailLayout from './pages/DetailLayout.tsx'
 import Home from './pages/Home.tsx'
 import Base from './pages/Base.tsx'
 import "./scrollbar.css"
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider>
+        <QueryClientProvider client={queryClient}>
         <Routes>
-          <Route element={<Base/>}>
-              <Route index element={<Home />} />
-              <Route path="/detail/:content_type/:content_id" element={<DetailLayout />} />
+          <Route element={<Base />}>
+            <Route index element={<Home />} />
+            <Route path="/detail/:content_type/:content_id" element={<DetailLayout />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </Provider>
+        </QueryClientProvider>
+      </Provider>
+    </BrowserRouter>
   </StrictMode>,
 )
