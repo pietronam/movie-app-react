@@ -1,17 +1,16 @@
-import { getTrendingContent } from "@/api/content";
+import { getSearchContent } from "@/api/search";
 import { Flex, Text } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { ContentCard } from "./ContentCard";
 
-type ContentHolderProps = {
-    pName: string,
+type SearchContentHolderProps = {
     URI: string,
 }
 
-export const ContentHolder = ({ pName, URI }: ContentHolderProps) => {
+export const SearchContentHolder = ({ URI }: SearchContentHolderProps) => {
     const { isPending, isError, data: cardContent, error } = useQuery({
-        queryKey: ['trending', URI],
-        queryFn: () => getTrendingContent(URI)
+        queryKey: ['search', URI],
+        queryFn: () => getSearchContent(URI)
     });
 
     if (isPending) {
@@ -31,7 +30,7 @@ export const ContentHolder = ({ pName, URI }: ContentHolderProps) => {
         >
             <Text
                 fontWeight="bold" textStyle="3xl" bgColor="#1B1833" color="#ed7812"
-            >{pName}</Text>
+            >Search Results</Text>
             <Flex
                 display={"flex"}
                 gap={2}

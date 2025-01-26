@@ -13,3 +13,4 @@ export const ALL_URI = "trending/all/day";
 export const MOVIE_URI = "trending/movie/day";
 export const TV_URI = "trending/tv/day";
 export const PEOPLE_URI = "trending/person/day";
+export const SEARCH_URI = "search/multi"

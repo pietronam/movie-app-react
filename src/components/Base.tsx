@@ -35,9 +35,7 @@ function Base() {
                     fontWeight={"semibold"}
                     marginTop={2}
                 >
-                    <RouterLink to={""}>Other Page</RouterLink>
-                    <RouterLink to={""}>Other Page</RouterLink>
-                    <RouterLink to={""}>Other Page</RouterLink>
+                    <RouterLink to={"/search"}>Search</RouterLink>
                 </Flex>
                 <Box
                     w="1/5"

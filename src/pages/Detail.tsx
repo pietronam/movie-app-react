@@ -6,7 +6,7 @@ import { Text, } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 
-function DetailLayout() {
+function Detail() {
 
     const { content_type, content_id } = useParams();
 
@@ -41,4 +41,4 @@ function DetailLayout() {
     )
 }
 
-export default DetailLayout
+export default Detail

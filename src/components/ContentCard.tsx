@@ -10,7 +10,7 @@ export const ContentCard = ({ cardContent }: ContentCardProps) => {
     const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
     return (
-        <RouterLink to={`detail/${cardContent.media_type}/${cardContent.id}`}>
+        <RouterLink to={`/detail/${cardContent.media_type}/${cardContent.id}`}>
             <Card.Root
                 width={cardContent.media_type === "person" ? 44 : 72}
                 rounded="2xl"
