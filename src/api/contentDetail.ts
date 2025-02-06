@@ -1,5 +1,5 @@
 import { MovieDetailType, TvDetailType, PersonDetailType } from "@/types/contentDetailTypes";
-import { BASE_URI, OPTIONS } from "./config";
+import { BASE_URL, OPTIONS } from "./config";
 import { ContentDisplayType, } from "@/types/contentDetailTypes";
 
 
@@ -7,7 +7,7 @@ export const getContentDetail = async (contentType: string, contentId: number): 
     try {
         switch (contentType) {
             case "movie": {
-                const response = await fetch(BASE_URI + `movie/${contentId}`, OPTIONS);
+                const response = await fetch(BASE_URL + `movie/${contentId}`, OPTIONS);
                 const movieData: MovieDetailType = await response.json();
 
                 const DisplayData: ContentDisplayType = {
@@ -31,7 +31,7 @@ export const getContentDetail = async (contentType: string, contentId: number): 
                 return DisplayData;
             }
             case "tv": {
-                const response = await fetch(BASE_URI + `tv/${contentId}`, OPTIONS);
+                const response = await fetch(BASE_URL + `tv/${contentId}`, OPTIONS);
                 const tvData: TvDetailType = await response.json();
 
                 const DisplayData: ContentDisplayType = {
@@ -54,7 +54,7 @@ export const getContentDetail = async (contentType: string, contentId: number): 
                 return DisplayData;
             }
             case "person": {
-                const response = await fetch(BASE_URI + `person/${contentId}`, OPTIONS);
+                const response = await fetch(BASE_URL + `person/${contentId}`, OPTIONS);
                 const personData: PersonDetailType = await response.json();
 
                 const DisplayData: ContentDisplayType = {

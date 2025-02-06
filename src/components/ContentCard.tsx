@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router";
 
 type ContentCardProps = {
     cardContent: CardContentType,
-}
+} 
 
 export const ContentCard = ({ cardContent }: ContentCardProps) => {
     const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
