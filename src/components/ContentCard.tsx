@@ -1,13 +1,14 @@
+import { IMAGE_BASE_URL } from "@/api/config";
 import { CardContentType } from "@/types/contentTypes";
 import { Card, Image } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
 
 type ContentCardProps = {
     cardContent: CardContentType,
-}
+} 
 
 export const ContentCard = ({ cardContent }: ContentCardProps) => {
-    const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+    // const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
     return (
         <RouterLink to={`/detail/${cardContent.media_type}/${cardContent.id}`}>

@@ -1,3 +1,4 @@
+import { IMAGE_BASE_URL } from "@/api/config";
 import { ContentDisplayType } from "@/types/contentDetailTypes";
 import { Flex, Text, Box, Image } from "@chakra-ui/react";
 
@@ -6,7 +7,7 @@ type TvDetailProps = {
 }
 
 export const TvDetail = ({ contentDetail }: TvDetailProps) => {
-    const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+    // const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
     return (
         <>

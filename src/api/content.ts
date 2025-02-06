@@ -1,6 +1,6 @@
 import { CardContentType, ContentType } from "../types/contentTypes";
 import { ResponseTrendingType } from "../types/responseTypes";
-import { BASE_URI, OPTIONS } from "./config";
+import { BASE_URL, OPTIONS } from "./config";
 import { mapContent } from "./utils";
 
 
@@ -11,7 +11,7 @@ import { mapContent } from "./utils";
  */
 export const getTrendingContent = async (trendingUri: string) => {
     try {
-        const response = await fetch(BASE_URI + `${trendingUri}`, OPTIONS);
+        const response = await fetch(BASE_URL + `${trendingUri}`, OPTIONS);
         const data: ResponseTrendingType = await response.json();
         const dataArray: ContentType[] = data.results;
 
