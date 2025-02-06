@@ -21,9 +21,10 @@ export const ContentCard = ({ cardContent }: ContentCardProps) => {
             >
                 <Image
                     width={cardContent.media_type === "person" ? 44 : 72}
-                    src={cardContent.background_img ? `${IMAGE_BASE_URL}/w300${cardContent.background_img}` : "@assets/image-placeholder.jpg"}
+                    maxHeight={cardContent.media_type === "person" ? "261.6px" : "161.34px"}
+                    src={cardContent.background_img ? `${IMAGE_BASE_URL}/w300${cardContent.background_img}` : "/image-placeholder.jpg"}
                     alt={cardContent.name}
-                    roundedTop="2xl" />
+                    roundedTop="2xl"/>
                 <Card.Title truncate color="#AB4459" margin="1" marginLeft="1.5">{cardContent.name}</Card.Title>
             </Card.Root >
         </RouterLink>

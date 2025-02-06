@@ -1,6 +1,6 @@
-import { Text, Box, Flex, Icon, Link as ChakraLink, Heading } from "@chakra-ui/react";
+import { Box, Link as ChakraLink, Flex, Heading, Icon, Text } from "@chakra-ui/react";
 import { TiSocialFacebook, TiSocialInstagram, TiSocialLinkedin, TiSocialTwitter, TiSocialYoutube } from "react-icons/ti";
-import { Link, Outlet, Link as RouterLink } from "react-router";
+import { Link, Outlet } from "react-router";
 
 function Base() {
     return (
@@ -28,15 +28,6 @@ function Base() {
                         </Heading>
                     </Link>
                 </Flex>
-                <Flex
-                    w="3/5"
-                    alignItems={"center"}
-                    gap="4"
-                    fontWeight={"semibold"}
-                    marginTop={2}
-                >
-                    <RouterLink to={"/search"}>Search</RouterLink>
-                </Flex>
                 <Box
                     w="1/5"
                 ></Box>
@@ -51,27 +42,27 @@ function Base() {
                 justifyContent={"center"}
                 gap="9">
                 <Flex gap={6}>
-                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ">
+                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
                         <Icon color="#ed7812" w={9} h={9}>
                             <TiSocialYoutube />
                         </Icon>
                     </ChakraLink>
-                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ">
+                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
                         <Icon color="#ed7812" w={9} h={9}>
                             <TiSocialInstagram />
                         </Icon>
                     </ChakraLink>
-                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ">
+                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
                         <Icon color="#ed7812" w={9} h={9}>
                             <TiSocialFacebook />
                         </Icon>
                     </ChakraLink>
-                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ">
+                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
                         <Icon color="#ed7812" w={9} h={9}>
                             <TiSocialTwitter />
                         </Icon>
                     </ChakraLink>
-                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ">
+                    <ChakraLink href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
                         <Icon color="#ed7812" w={9} h={9}>
                             <TiSocialLinkedin />
                         </Icon>

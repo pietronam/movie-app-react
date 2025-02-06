@@ -19,12 +19,13 @@ export const TvDetail = ({ contentDetail }: TvDetailProps) => {
                     maxW={"80vw"}
                     paddingTop={16}
                     paddingBottom={16}
+                    justifyContent={"space-between"}
+                    direction={["column-reverse", undefined, undefined, "row"]}
                 >
                     <Flex direction={"column"} gap={4}>
                         <Text textStyle="4xl" fontWeight={"bold"} color={"#ed7812"}>{contentDetail.name}</Text>
 
-                        <Text textStyle="md" w="4/5">{contentDetail.description}</Text>
-
+                        <Text textStyle="md" w={["100%", undefined, undefined, "4/5"]}>{contentDetail.description}</Text>
                         <Box marginTop={"auto"}>
                             <Text><b>Seasons: </b>{contentDetail.seasons?.join(", ")}</Text>
                             <Text><b>Release date: </b>{contentDetail.release_or_birthday}</Text>
@@ -38,8 +39,8 @@ export const TvDetail = ({ contentDetail }: TvDetailProps) => {
 
                         </Box>
                     </Flex>
-                    <Image src={`${IMAGE_BASE_URL}/w500/${contentDetail.img}`}
-                        width={"2/6"}
+                    <Image src={contentDetail.img ? `${IMAGE_BASE_URL}/w500/${contentDetail.img}` : "/image-placeholder.jpg"}
+                        width={["xl", "lg", "md", "2/6"]}
                         maxH={"xl"}
                         borderRadius={20} />
                 </Flex>
