@@ -24,7 +24,7 @@ function Base() {
                             fontFamily=""
                             fontSize="4xl"
                             padding={10}>
-                            MovieApp
+                            MovieApp.
                         </Heading>
                     </Link>
                 </Flex>

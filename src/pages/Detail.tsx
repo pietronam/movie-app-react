@@ -2,14 +2,19 @@ import { MovieDetail } from "@/components/MovieDetail";
 import { PersonDetail } from "@/components/PersonDetail";
 import { TvDetail } from "@/components/TvDetail";
 import useContentDetail from "@/hooks/useContentDetail";
-import { Text, } from "@chakra-ui/react";
+import { Box, Spinner, Text, } from "@chakra-ui/react";
 
 function Detail() {
     const { isPending: loading, isError, data: contentDetail, error } = useContentDetail();
     return (
         <>
             {loading ?
-                <Text>Loading...</Text> :
+                <Box
+                    padding={5}
+                    paddingLeft={10}
+                >
+                    <Spinner size="lg" color={"#b6495f"} />
+                </Box> :
                 isError ? <Text>{error?.message}</Text> :
                     contentDetail ?
                         (

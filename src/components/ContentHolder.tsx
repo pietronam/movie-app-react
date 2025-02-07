@@ -1,5 +1,5 @@
 import useContentHolder from "@/hooks/useContentHolder";
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { ContentCard } from "./ContentCard";
 
 type ContentHolderProps = {
@@ -11,7 +11,12 @@ export const ContentHolder = ({ pName, URI }: ContentHolderProps) => {
     const { isPending: loading, isError, error, data: cardContent } = useContentHolder(URI);
 
     if (loading) {
-        return "Loading..."
+        return (<Box
+            padding={5}
+            paddingLeft={10}
+        >
+            <Spinner size="lg" color={"#b6495f"} />
+        </Box>)
     }
 
     if (isError) {
