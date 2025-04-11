@@ -10,15 +10,10 @@ import { mapContent } from "./utils";
  * @returns an array of CardContentType ready to be used in cards
  */
 export const getTrendingContent = async (trendingUri: string) => {
-    try {
         const response = await fetch(BASE_URL + `${trendingUri}`, OPTIONS);
         const data: ResponseTrendingType = await response.json();
         const dataArray: ContentType[] = data.results;
 
         const cardsArray: CardContentType[] = mapContent(dataArray);
         return cardsArray;
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
 }
